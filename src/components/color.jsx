@@ -1,5 +1,6 @@
 import React from 'react'
-import './Color.css'
+import '../styles/color.css'
+
 const randomColor = () => {
     let rando = Math.random() * 0xFFFFFF
     rando = Math.floor(rando)
@@ -13,7 +14,7 @@ class Color extends React.Component {
 
     this.state = {
       displayColorPicker: false,
-      color : randomColor()
+      color: randomColor()
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -40,23 +41,30 @@ class Color extends React.Component {
   }
 
   render(props) {
+    const color = this.state.color
     return (
       <label
         className="color"
         onClick={ this.handleClick }
         onChange={ this.handleChange }
-        style={{ background: this.state.color }}
-      > { this.state.color }
+        style={{ background: color }}
+      > { color }
         { this.state.displayColorPicker &&
           <input
             type="color"
-            className="hidden"
+            className="picker"
             value={this.state.color}
             onChange={this.handleChange}
           />
         }
-        <p>{this.props.id}</p>
-        <button onClick={this.handleRemove}>🗑</button>
+        <div className="controls">
+          <button
+            className="trash"
+            onClick={this.handleRemove}
+          > 🗑
+          <span className="visually-hidden">delete</span>
+          </button>
+        </div>
       </label>
     )
   }

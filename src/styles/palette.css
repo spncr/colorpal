@@ -1,0 +1,13 @@
+.palette {
+  display: flex;
+
+  padding: 1rem;
+  border-bottom: var(--palette-divider);
+}
+
+.palette:first-child{
+  border-top: var(--palette-divider);
+}
+.palette:last-child {
+  border-bottom: none;
+}

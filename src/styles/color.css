@@ -1,0 +1,28 @@
+.color {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  width: 100px;
+  height: 120px;
+}
+
+.picker {
+  left: 50%;
+  width: 0;
+  top: 20%;
+  position: absolute;
+  opacity: 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.trash {
+  border: 3px solid #333;
+  border-radius: 2px;
+  padding: .5em;
+}
