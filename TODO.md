@@ -1,5 +1,5 @@
 * Palette Component
-  * label Palette
+  * rename palette
   * reorder palette
   * duplicate palette
   * move color from one palette to another
@@ -10,6 +10,7 @@
 
 Color:
   * contrast ratio for text
+  * useEffect - function call in useState
 
 Drag n' Drop
   * get library working
@@ -27,7 +28,9 @@ Admin
   * Update manifest.json
   * Cleanup index.html?
 
-  Features:
+Features:
   * Multiple Palettes
   * Remove colors, remove Palettes
   * Change colors
+  * Palette with names
+  * App, color are functional
