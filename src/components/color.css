@@ -3,8 +3,13 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  width: 100px;
-  height: 120px;
+  width: 120px;
+  height: 147px;
+}
+
+.color label {
+  display: block;
+  height: 100%;
 }
 
 .picker {
@@ -15,14 +20,9 @@
   opacity: 0;
 }
 
-.controls {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
 .trash {
-  border: 3px solid #333;
-  border-radius: 2px;
-  padding: .5em;
+  margin: 0;
+  padding: 4px;
+  font-size: 14px;
+  width: 100%;
 }

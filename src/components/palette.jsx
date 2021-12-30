@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/palette.css'
+import './palette.css'
 import Color from './color.jsx'
 
 let nextId = 1
@@ -10,7 +10,7 @@ class Palette extends React.Component {
 
     this.state = {
       colors : [{id: nextId}],
-      name: 'numpty',
+      name: 'palette ' + props.id,
       id: props.id
     }
     nextId += 1
@@ -53,11 +53,18 @@ class Palette extends React.Component {
 
     return (
       <div className="palette">
-      { colors }
-        <button
-          onClick= {this.handleAddColor}>
-          ➕
-        </button>
+        <h2 className="name"> {this.state.name} </h2>
+        <div className="controls">
+          <button
+            title="Add a color"
+            onClick= {this.handleAddColor}>
+            +
+            <span className="visually-hidden">add new color to {this.state.name} palette</span>
+          </button>
+        </div>
+        <div className="colors">
+          { colors }
+        </div>
       </div>
     )
   }

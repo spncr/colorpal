@@ -5,15 +5,51 @@
 }
 
 body {
+  margin: 0;
+
   background: #111;
   color: #ccc;
+
   font-family: 'Inconsolata', monospace;
-  margin: 0;
+}
+
+header {
+  display: flex;
 }
 
 h1 {
+  margin: .2em;
+
   font-size: 24px;
-  margin: 1em .5em;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+button {
+  display: inline-block;
+
+  margin-right: 1em;
+  padding: .2em .5em;
+  border: 1px solid #222;
+
+  color: #fed;
+  background-color: #000;
+
+  font-size: 1.2rem;
+}
+
+button:hover,
+button:focus {
+  background-color: #222;
+  border-color:  #666;
+}
+
+.palettes {
+  display: flex;
+  flex-direction: column;
+  background-color: #000;
 }
 
 .visually-hidden:not(:focus):not(:active) {

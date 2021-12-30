@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/color.css'
+import './color.css'
 
 const randomColor = () => {
     let rando = Math.random() * 0xFFFFFF
@@ -24,11 +24,11 @@ class Color extends React.Component {
 
   }
 
-  handleClick = () => {
+  handleClick = (e) => {
     this.setState({ displayColorPicker: true})
   }
 
-  handleClose = () => {
+  handleClose = (e) => {
     this.setState({ displayColorPicker: false})
   }
 
@@ -36,36 +36,37 @@ class Color extends React.Component {
     this.setState({ color: e.target.value })
   }
 
-  handleRemove = () => {
+  handleRemove = (e) => {
     this.props.onRemoveColor(this.props.id)
   }
 
   render(props) {
     const color = this.state.color
+
     return (
-      <label
-        className="color"
-        onClick={ this.handleClick }
-        onChange={ this.handleChange }
-        style={{ background: color }}
-      > { color }
-        { this.state.displayColorPicker &&
-          <input
-            type="color"
-            className="picker"
-            value={this.state.color}
-            onChange={this.handleChange}
-          />
-        }
-        <div className="controls">
-          <button
-            className="trash"
-            onClick={this.handleRemove}
-          > 🗑
-          <span className="visually-hidden">delete</span>
-          </button>
-        </div>
-      </label>
+      <div className="color" title={ color }>
+        <label
+          onClick={ this.handleClick }
+          onChange={ this.handleChange }
+          style={{ background: color }}
+        >
+          { this.state.displayColorPicker &&
+            <input
+              type="color"
+              className="picker"
+              value={this.state.color}
+              onChange={this.handleChange}
+            />
+          }
+        </label>
+        <button
+          className="trash"
+          name='delete'
+          onClick={this.handleRemove}>
+          🗑
+          <span className="visually-hidden">delete color</span>
+        </button>
+      </div>
     )
   }
 }
