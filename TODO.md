@@ -33,4 +33,4 @@ Features:
   * Remove colors, remove Palettes
   * Change colors
   * Palette with names
-  * App, color are functional
+  * App, palette, color are functional
