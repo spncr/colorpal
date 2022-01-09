@@ -1,22 +1,51 @@
-import React, {useState} from 'react'
-import './palette.css'
+import useStoredState from '../hooks/useStoredState.jsx'
 import Color from './color.jsx'
+import './palette.css'
 
-let nextId = 2
+const randomColor = () => {
+  let rando = Math.floor( Math.random() * 0xFFFFFF )
+  return '#' + rando.toString(16).padStart(6,0)
+}
 
 export default function Palette(props) {
-  const [colors, setColors] = useState([])
-  const [name, setName] = useState('palette ' + props.id)
+  let storageKey = 'palette_' + props.id
+  let name = 'palette ' + props.id// const [name, setName] = useStoredState('palette ' + props.id, storageKey + '_name')
+  const [colors, setColors] = useStoredState([{id: 1, hex: randomColor()}], storageKey + '_colors')
 
   const handleAddColor = () => {
-    setColors(colors.concat({id: nextId}))
-    nextId += 1
+    let nextId
+
+    if (colors.length > 0) {
+      let ids = colors.map((color) => color.id)
+      nextId = Math.max(...ids) + 1
+    } else {
+      nextId = 1
+    }
+
+    setColors(colors.concat(
+      [
+        {id: nextId, hex: randomColor()}
+      ]
+    ))
+  }
+
+  const handleChangeColor = (id, newColor) => {
+    const newColors = colors.slice()
+    const index = newColors.findIndex(color => color.id === id)
+    newColors[index] = {id: id, hex: newColor}
+
+    setColors(newColors)
+    console.log('color change here')
   }
 
   const handleRemoveColor = (id) => {
-    const new_colors = colors.filter(color => color.id !== id)
-    if (new_colors.length <= 0) props.onRemovePalette(props.id)
-    else setColors(new_colors)
+    const newColors = colors.filter(color => color.id !== id)
+    if (newColors.length <= 0) {
+      props.onRemovePalette(props.id)
+      window.localStorage.removeItem(storageKey + '_name')
+      window.localStorage.removeItem(storageKey + '_colors')
+    }
+    else setColors(newColors)
   }
 
   return (
@@ -32,11 +61,14 @@ export default function Palette(props) {
       </div>
       <div className="colors">
         {colors.map((color) =>
-          <Color
-           key={color.id}
-           id={color.id}
-           onRemoveColor={handleRemoveColor}/>)
-         }
+         <Color
+            hex={ color.hex }
+            key={ color.id }
+            id={ color.id }
+            onRemoveColor={ handleRemoveColor }
+            onChangeColor={ handleChangeColor }
+          />
+        )}
       </div>
     </div>
   )

@@ -1,24 +1,24 @@
-import React, {useState} from 'react'
+import useStoredState from './hooks/useStoredState.jsx'
 import Palette from "./components/palette.jsx"
 import './app.css'
 
-let nextId = 1
-
 export default function App() {
-  const [palettes, setPalettes] = useState([]);
+  const [palette_ids, setPaletteIds] = useStoredState([], 'palette_ids');
 
   function handleAddPalette() {
-    setPalettes(
-      palettes.concat(
-        {id: nextId}
-      ));
-    nextId += 1
+    let nextId
+
+    palette_ids.length > 0 ? nextId = Math.max(...palette_ids) + 1 : nextId = 1
+
+    setPaletteIds(
+      palette_ids.concat(nextId))
   }
 
   function handleRemovePalette(id) {
-    setPalettes(
-      palettes.filter(palette => palette.id !== id)
+    setPaletteIds(
+      palette_ids.filter(i => i !== id)
     )
+    window.localStorage.removeItem('palette_' + id + '_name')
   }
 
   return (
@@ -31,10 +31,10 @@ export default function App() {
       </button>
     </header>
     <div className="palettes">
-      {palettes.map((palette) =>
+      {palette_ids.map((id) =>
         <Palette
-          key = {palette.id}
-          id = {palette.id}
+          key = {id}
+          id = {id}
           onRemovePalette = {handleRemovePalette}
         />
       )}

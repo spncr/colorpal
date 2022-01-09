@@ -3,14 +3,13 @@
   * reorder palette
   * duplicate palette
   * move color from one palette to another
+  * hoist color values into array in palette state
+  * useStoredState for colors
   * Later:
     * resize palette container
-    * constrain to min-size?
-  * color should probably bubble up to palette?
 
 Color:
   * contrast ratio for text
-  * useEffect - function call in useState
 
 Drag n' Drop
   * get library working
