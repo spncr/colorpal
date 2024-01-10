@@ -9,9 +9,10 @@ export default function useStoredState(defaultValue, storageKey) {
       : defaultValue
   })
 
-  useEffect(() => {
-    window.localStorage.setItem(storageKey, JSON.stringify(value))
-  }, [storageKey, value])
+  useEffect(
+    () => window.localStorage.setItem(storageKey, JSON.stringify(value)),
+    [storageKey, value]
+  )
 
   return [value, setValue]
 }

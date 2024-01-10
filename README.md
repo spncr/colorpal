@@ -10,7 +10,11 @@ features coming:
 * Copy palettes
 * Rename palettes
 
-features dreaming:
-* turn a photo into a palette
+feature dreaming:
 * integrate with the ravelry api to grab yarn colorways and arrange them in palettes
-* 
+
+## run locally
+Make sure you have yarn classic `yarn --version` should be ~1.22.21 or install with `npm install --global yarn`
+Clone the Repo
+`yarn` to install the packages
+`yarn start` to run a local server

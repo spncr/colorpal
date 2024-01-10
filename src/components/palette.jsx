@@ -9,7 +9,8 @@ const randomColor = () => {
 
 export default function Palette(props) {
   let storageKey = 'palette_' + props.id
-  let name = 'palette ' + props.id// const [name, setName] = useStoredState('palette ' + props.id, storageKey + '_name')
+  let name = 'palette ' + props.id // const [name, setName] = useStoredState('palette ' + props.id, storageKey + '_name')
+
   const [colors, setColors] = useStoredState([{id: 1, hex: randomColor()}], storageKey + '_colors')
 
   const handleAddColor = () => {
@@ -35,7 +36,6 @@ export default function Palette(props) {
     newColors[index] = {id: id, hex: newColor}
 
     setColors(newColors)
-    console.log('color change here')
   }
 
   const handleRemoveColor = (id) => {
